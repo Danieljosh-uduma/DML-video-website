@@ -30,14 +30,18 @@
     <header>
         <a href="{% url "home:homepage" %}" class='logo'><h1>DML</h1></a>
         <ul class="navlist">
-        {% if page=='home' %}
+        {% if page != 'home' %}
             <li><a href="{% url 'home:homepage'%}">Home</a></li>
-        {% elif page=='about' %}
+        {% endif %}
+        {% if page != 'about' %}
             <li><a href="{% url 'home:about'%}">About</a></li>
-        {% elif page=='member' %}
+        {% endif %}
+        {% if page != 'member' %}
             <li><a href="{% url 'home:member'%}">membership</a></li>
-        {% elif page=='team' %}
+        {% endif %}
+        {% if page != 'team' %}
             <li><a href="{% url 'home:team'%}">Team</a></li>
+        {% endif %}
         </ul>
         <div class="right-content">
             <a href="" class="nav-btn">sign in</a>
