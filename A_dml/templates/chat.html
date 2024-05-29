@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        django app
+    {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'chatroom:homepage' %}"><img src="{% static 'images/logo.png' %}" alt="logo" class="dml"></a>
+    </nav>
+
+    {% block content %}
+    
+
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends "chat.html" %}
+
+{% block title %}
+    chatroom
+{% endblock title %}
+
+{% block content %}
+    <header>
+        <h1 class="head">Rooms</h1>
+    </header>
+    <div class="temp">
+        <div>
+            <h2>Browse topic</h2>
+            <hr>
+            {% for topic in topics %}
+                <h4 class='sidebar'>
+                {% if topic.name == 'Python' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/5968/5968350.png" alt="">
+                {% endif %}
+                {% if topic.name == 'Gen AI' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/11103/11103355.png" alt="">
+                {% endif %}
+                {% if topic.name == 'Web development' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/7991/7991055.png" alt="">
+                {% endif %}
+                {% if topic.name == 'JavaScript' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/1199/1199124.png" alt="">
+                {% endif %}
+                {% if topic.name == 'SQL' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/8263/8263231.png" alt="">
+                {% endif %}
+                {% if topic.name == 'Django' %}
+                    <h4><a href="">{{ topic.name }}</a></h4>
+                    <img src="https://cdn-icons-png.flaticon.com/128/9307/9307630.png" alt="">
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div>
+            <h2>Rooms</h2><hr>
+            {% for room in rooms %}
+                <div class="room">
+                    <span>@<a href="">user</a></span>
+                    <h5><a href="{% url 'chatroom:room' room.id %}">{{ room.name }}</a></h5>
+                    <small>{{ room.description }}</small>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <h2>Recent</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, unde? Deleniti quae alias fuga? Enim itaque maxime facere, ratione rem assumenda quo dolores, obcaecati, tenetur optio omnis quisquam atque cumque. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore atque quas quidem temporibus ea iure beatae officiis debitis repellat expedita. Exercitationem quasi tenetur sapiente velit, non repudiandae similique debitis quas.</p>
+        </div>
+    </div>
+
+
+
+{% endblock content %}

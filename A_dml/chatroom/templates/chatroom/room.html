@@ -1,0 +1,13 @@
+{% extends "chat.html" %}
+
+{% block title %}
+    {{ room.name }}
+{% endblock title %}
+
+{% block content %}
+    <div>
+        <h1>{{ room.name }}</h1>
+        <p>{{ room.description }}</p>
+    </div>
+
+{% endblock content %}

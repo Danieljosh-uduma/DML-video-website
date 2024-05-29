@@ -28,7 +28,7 @@
 </head>
 <body>
     <header>
-        <a href="{% url "home:homepage" %}" class='logo'><h1>DML</h1></a>
+        <a href="{% url "home:homepage" %}" class='logo'><img src="{% static 'images/logo.png' %}" alt="logo" class="dml"></a>
         <ul class="navlist">
         {% if page != 'home' %}
             <li><a href="{% url 'home:homepage'%}">Home</a></li>
