@@ -1,8 +1,39 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Room
 from .forms import RoomForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Create your views here.
+
+def login_page(request):
+    page = 'login'
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'User does not exist!!')
+            
+        user = authenticate(request, username=username, password=password) 
+         
+        if user is not None:
+            login(request, user)
+            return redirect('chatroom:homepage')
+        else:
+            messages.error(request, 'incorrect username or password')
+        
+    context= {'page':page}
+    return render(request, 'chatroom/register.html', context)
+
+def logout_page(request):
+    logout(request)
+    return redirect('home:homepage')
+
 def homepage(request):
     topics = Topic.objects.all()
     rooms = Room.objects.all()

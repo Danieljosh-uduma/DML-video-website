@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #installed app
-    'chatroom.apps.ChatroomConfig',
+    'chat.apps.ChatConfig',
     'video.apps.ChatroomConfig',
     'home.apps.HomeConfig',
     'user.apps.UserConfig'

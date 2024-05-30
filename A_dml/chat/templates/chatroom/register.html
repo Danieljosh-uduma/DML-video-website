@@ -1,0 +1,29 @@
+{% extends "chat.html" %}
+
+{% block title %}
+    {% if page == 'login' %}
+        login
+    {% else %}
+        register
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+
+    <div class="login">
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li></li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name='username' placeholder='Username'>
+            <input type="password" name='password' placeholder='Password'>
+            <input type="submit" value='Log in'>
+        </form>
+    </div>
+
+{% endblock content %}
