@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     #installed app
     'chatroom.apps.ChatroomConfig',
     'video.apps.ChatroomConfig',
-    'home.apps.HomeConfig'
+    'home.apps.HomeConfig',
+    'user.apps.UserConfig'
 ]
 
 MIDDLEWARE = [

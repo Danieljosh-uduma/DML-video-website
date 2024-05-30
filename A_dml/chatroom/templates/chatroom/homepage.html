@@ -7,6 +7,7 @@
 {% block content %}
     <header>
         <h1 class="head">Rooms</h1>
+        <a href="{% url 'home:homepage' %}"><h4>home</h4></a>
     </header>
     <div class="temp">
         <div>
@@ -42,11 +43,16 @@
         </div>
         <div>
             <h2>Rooms</h2><hr>
+            <a href="{% url 'chatroom:create-room' %}">Create Room</a>
             {% for room in rooms %}
                 <div class="room">
-                    <span>@<a href="">user</a></span>
+                    <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
+                    <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
+                    <span>@<a href="">{{ room.host }}</a></span>
                     <h5><a href="{% url 'chatroom:room' room.id %}">{{ room.name }}</a></h5>
                     <small>{{ room.description }}</small>
+                    <br>
+                    <small><a href="">{{ room.topic }}</a></small>
                     <hr>
                 </div>
             {% endfor %}
