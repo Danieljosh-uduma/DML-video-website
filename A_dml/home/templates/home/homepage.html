@@ -12,10 +12,14 @@
             <p>boosts your coding skils and competencies in latest Technologies and tools. DML Technologies is here to help you achieve your dreams.</p>
 
             <div class="main-hero">
+            {% if request.user.is_authenticated %}
+                <a href="{% url "user:resource" %}" class="btn">Join in</a>
+            {% else %}
                 <a href="{% url "chatroom:login" %}" class="btn">login</a>
                 <a href="" class="join">
                     join |<span>Community</span>
                 </a>
+            {% endif %}
             </div>
         </div>
 
@@ -38,14 +42,10 @@
         <a href=""><i class="ri-youtube-fill"></i></a>
     </div>
     <div class="scroll">
-        <a href="">
+        <a href="#footer">
             <i class="ri-scroll-to-bottom-line"></i>
             Scroll down
         </a>
-    </div>
-    <div class="items">
-        <h2><a href="">videos</a></h2>
-        <h2><a href="{% url 'chatroom:homepage' %}">studyrooms</a></h2>
     </div>
 {% endblock %}
 

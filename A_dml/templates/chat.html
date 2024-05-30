@@ -8,17 +8,31 @@
         django app
     {% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+    <!-- google fonts link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <nav>
-        <a href="{% url 'chatroom:homepage' %}"><img src="{% static 'images/logo.png' %}" alt="logo" class="dml"></a>
+        <a href="{% url 'chatroom:homepage' %}" title='deep machine learning'><img src="{% static 'images/logo.png' %}" alt="logo" class="dml"></a>
     </nav>
     <br>
     {% if request.user.is_authenticated %}
+        <h3>Hello {{ request.user }}</h3>
         <a href="{% url 'chatroom:logout' %}">Logout</a>
     {% else %}
         <a href="{% url 'chatroom:login' %}">Login</a>
     {% endif %}
+
+    <form method='GET' action="{% url 'chatroom:homepage' %}" >
+        <input type="text" name='q' placeholder='search for rooms'>
+    </form>
 
     {% block content %}
     

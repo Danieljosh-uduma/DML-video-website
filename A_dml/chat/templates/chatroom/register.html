@@ -10,6 +10,8 @@
 
 {% block content %}
 
+    <div>
+    {% if page == 'login' %}
     <div class="login">
         {% if messages %}
         <ul class="messages">
@@ -24,6 +26,29 @@
             <input type="password" name='password' placeholder='Password'>
             <input type="submit" value='Log in'>
         </form>
-    </div>
 
+        <p>haven't signed up yet?</p>
+        <a href="{% url 'chatroom:register' %}">Sign in</a>
+    </div>
+    {% else %}
+    <div class="register">
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li></li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value='Sign in'>
+        </form>
+
+        <p>Already signed up yet?</p>
+        <a href="{% url 'chatroom:login' %}">Log in</a>
+    </div>
+    {% endif %}
+    </div>
 {% endblock content %}

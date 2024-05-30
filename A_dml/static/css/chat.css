@@ -29,3 +29,6 @@ body {
 .h2{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+ion-icon {
+    font-size: 1000px;
+  }

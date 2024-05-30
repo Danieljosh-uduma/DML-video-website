@@ -9,35 +9,45 @@
         <h1 class="head">Rooms</h1>
         <a href="{% url 'home:homepage' %}"><h4>home</h4></a>
     </header>
+    
     <div class="temp">
         <div>
             <h2>Browse topic</h2>
             <hr>
+            <a href='{% url "chatroom:homepage" %}' title='All'>
+            <ion-icon name="home" size='large'></ion-icon>
+            </a>
             {% for topic in topics %}
                 <h4 class='sidebar'>
                 {% if topic.name == 'Python' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/5968/5968350.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" aria-label='Python' title='Python'>
+                    <ion-icon name="logo-python" size='large'></ion-icon>
+                    </a>
                 {% endif %}
                 {% if topic.name == 'Gen AI' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/11103/11103355.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Gen AI'>
+                    <ion-icon name="aperture" size='large'></ion-icon>
+                    </a>
                 {% endif %}
                 {% if topic.name == 'Web development' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/7991/7991055.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Web development'>
+                    <ion-icon name="logo-web-component" size='large'></ion-icon>
+                    </a>
                 {% endif %}
                 {% if topic.name == 'JavaScript' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/1199/1199124.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='JavaScript'>
+                    <ion-icon name="logo-javascript" size='large'></ion-icon>
+                    </a>
                 {% endif %}
                 {% if topic.name == 'SQL' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/8263/8263231.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='SQL'>
+                    <ion-icon name="albums" size='large'></ion-icon>
+                    </a>
                 {% endif %}
                 {% if topic.name == 'Django' %}
-                    <h4><a href="">{{ topic.name }}</a></h4>
-                    <img src="https://cdn-icons-png.flaticon.com/128/9307/9307630.png" alt="">
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Django'>
+                    <ion-icon name="earth" size='large'></ion-icon>
+                    </a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -46,8 +56,10 @@
             <a href="{% url 'chatroom:create-room' %}">Create Room</a>
             {% for room in rooms %}
                 <div class="room">
+                    {% if request.user == room.host %}
                     <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
                     <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
+                    {% endif %}
                     <span>@<a href="">{{ room.host }}</a></span>
                     <h5><a href="{% url 'chatroom:room' room.id %}">{{ room.name }}</a></h5>
                     <small>{{ room.description }}</small>
