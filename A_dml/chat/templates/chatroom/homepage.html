@@ -7,7 +7,7 @@
 {% block content %}
     <header>
         <h1 class="head">Rooms</h1>
-        <a href="{% url 'home:homepage' %}"><h4>home</h4></a>
+        <a href="{% url 'user:resource' %}"><h4>home</h4></a>
     </header>
     
     <div class="temp">
@@ -53,14 +53,22 @@
         </div>
         <div>
             <h2>Rooms</h2><hr>
-            <a href="{% url 'chatroom:create-room' %}">Create Room</a>
+            <p>
+                <a href="{% url 'chatroom:create-room' %}">Create Room</a> 
+                ({{ count }} rooms available)
+            </p>
+            <br/>
             {% for room in rooms %}
                 <div class="room">
-                    {% if request.user == room.host %}
+                    {% if request.user == room.host or request.user.is_superuser %}
                     <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
                     <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
                     {% endif %}
-                    <span>@<a href="">{{ room.host }}</a></span>
+                    {% if room.host != None %}
+                        <span>@<a href="">{{ room.host }}</a></span>
+                    {% else %}
+
+                    {% endif %}
                     <h5><a href="{% url 'chatroom:room' room.id %}">{{ room.name }}</a></h5>
                     <small>{{ room.description }}</small>
                     <br>

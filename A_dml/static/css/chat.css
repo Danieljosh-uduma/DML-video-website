@@ -32,3 +32,8 @@ body {
 ion-icon {
     font-size: 1000px;
   }
+
+.room-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}

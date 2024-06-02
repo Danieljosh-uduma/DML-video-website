@@ -5,22 +5,34 @@
 {% endblock title %}
 
 {% block content %}
-    <div>
-        <h1>{{ room.name }}</h1>
-        <p>{{ room.description }}</p>
-    </div>
-    <br>
-    <div class="message-wrapper">
-        <h3>Conversation</h3>
-        <hr>
-
-        {% for message in R_messages %}
-            <small>@{{ message.user }} {{ message.created|timesince}} ago</small>
-            <p>{{ message.body }}</p>
-            <br>
-            <hr>
-        {% endfor %}
-
+            <div>
+                <h1>{{ room.name }}</h1>
+                <p>{{ room.description }}</p>
+            </div>
+    <div class="room-container">
+            <div class="message-wrapper">
+                <h3>Conversation</h3>
+                <hr>
+                {% for message in R_messages %}
+                    <small>@{{ message.user }} {{ message.created|timesince}} ago</small>
+                    <p>{{ message.body }}</p>
+                    <br>
+                    <hr>
+                {% endfor %}
+                <div class="comment-form">
+                    <form action="" method='POST'>
+                        {% csrf_token %}
+                        <input type="text" name='body' placeholder='write a comment'> 
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h3>participants</h3>
+                <hr>
+                    {% for p in participants %}
+                        <h5><a href="">@{{ p }}</a></h5>
+                    {% endfor %}
+            </div>
     </div>
 
 {% endblock content %}
