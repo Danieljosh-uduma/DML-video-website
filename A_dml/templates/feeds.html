@@ -1,0 +1,21 @@
+
+{% for room in rooms %}
+    <div class="room">
+        {% if request.user == room.host or request.user.is_superuser %}
+        <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
+        <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
+        {% endif %}
+        {% if room.host != None %}
+            <span>@<a href="{% url 'user:profile' room.host.id %}">{{ room.host }}</a></span>
+        {% else %}
+
+        {% endif %}
+        <h4>{{ room.name }}</h4>
+        <h5><a href="{% url 'chatroom:room' room.id %}">join</a></h5>
+        <br>
+        <small>{{ room.description }}</small>
+        <br>
+        <small><a href="{% url "chatroom:homepage" %}?q={{room.topic}}">{{ room.topic }}</a></small>
+        <hr>
+    </div>
+{% endfor %}

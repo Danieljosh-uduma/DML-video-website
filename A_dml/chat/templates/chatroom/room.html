@@ -12,17 +12,19 @@
     <div class="room-container">
             <div class="message-wrapper">
                 <h3>Conversation</h3>
-                <hr>
                 {% for message in R_messages %}
-                    <small>@{{ message.user }} {{ message.created|timesince}} ago</small>
+                    <small>@<a href="{% url 'user:profile' message.user.id %}">{{ message.user }}</a> {{ message.created|timesince}} ago</small>
                     <p>{{ message.body }}</p>
                     <br>
+                    {% if request.user == message.user or request.user.is_superuser %}
+                        <a href="{% url 'chatroom:delete-message' message.id %}">delete message</a>
+                    {% endif %}
                     <hr>
                 {% endfor %}
-                <div class="comment-form">
+                <div class="comment-form" id='message'>
                     <form action="" method='POST'>
                         {% csrf_token %}
-                        <input type="text" name='body' placeholder='write a comment'> 
+                        <input type="text" name='body' placeholder='write a comment' href='#message'> 
                     </form>
                 </div>
             </div>

@@ -5,4 +5,5 @@ app_name = 'user'
 
 urlpatterns = [
     path('', views.resource, name='resource'),
+    path('profile/<str:pk>/', views.user_profile, name='profile')
 ]

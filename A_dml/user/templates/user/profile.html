@@ -1,0 +1,26 @@
+{% extends "chat.html" %}
+
+{% block title %}
+    {{ request.user }} profile
+
+{% endblock title %}
+
+{% block content %}
+    <br>
+    <h1>{{ user }}</h1>
+
+    <div class='profile-container'>
+        <div>
+            {% include "topics.html" %}
+        </div>
+
+        <div>
+            {% include "feeds.html" %}
+        </div>
+
+        <div>
+            {% include "recent.html" %}
+        </div>
+    </div>
+
+{% endblock content %}

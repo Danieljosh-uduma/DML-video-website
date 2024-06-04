@@ -70,7 +70,8 @@ def homepage(request):
     )
     room_count = rooms.count()
     topics = Topic.objects.all()
-    context = {'topics':topics, 'rooms':rooms, 'count':room_count}
+    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))#.order_by('created')
+    context = {'topics':topics, 'rooms':rooms, 'count':room_count, 'R_messages':R_messages}
     return render(request, 'chatroom/homepage.html', context)
 
 @login_required(login_url='chatroom:login')
@@ -123,5 +124,19 @@ def delete_room(request,pk):
     if request.method == 'POST':
         room.delete()
         return redirect('chatroom:homepage')
-    context = {'room':room}
+    context = {'obj':room}
+    return render(request, 'chatroom/delete_room.html', context)
+
+@login_required(login_url='chatroom:login')
+def delete_message(request,pk):
+    message = Message.objects.get(id=pk)
+    num = pk
+    
+    if request.user != message.user:
+       return HttpResponse('you are not allow here!!')
+   
+    if request.method == 'POST':
+        message.delete()
+        return redirect('chatroom:homepage')
+    context = {'obj':message}
     return render(request, 'chatroom/delete_room.html', context)

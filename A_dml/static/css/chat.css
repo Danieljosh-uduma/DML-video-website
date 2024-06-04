@@ -24,7 +24,7 @@ body {
 }
 .temp {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 .h2{
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -36,4 +36,9 @@ ion-icon {
 .room-container {
     display: grid;
     grid-template-columns: 3fr 1fr;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
 }

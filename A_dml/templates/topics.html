@@ -1,0 +1,38 @@
+<h2>Browse topic</h2>
+            <hr>
+            <a href='{% url "chatroom:homepage" %}' title='All'>
+            <ion-icon name="home" size='large'></ion-icon>
+            </a>
+            {% for topic in topics %}
+                <h4 class='sidebar'>
+                {% if topic.name == 'Python' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" aria-label='Python' title='Python'>
+                    <ion-icon name="logo-python" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+                {% if topic.name == 'Gen AI' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Gen AI'>
+                    <ion-icon name="aperture" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+                {% if topic.name == 'Web development' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Web development'>
+                    <ion-icon name="logo-web-component" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+                {% if topic.name == 'JavaScript' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='JavaScript'>
+                    <ion-icon name="logo-javascript" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+                {% if topic.name == 'SQL' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='SQL'>
+                    <ion-icon name="albums" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+                {% if topic.name == 'Django' %}
+                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Django'>
+                    <ion-icon name="earth" size='large'></ion-icon>
+                    </a>
+                {% endif %}
+            {% endfor %}
