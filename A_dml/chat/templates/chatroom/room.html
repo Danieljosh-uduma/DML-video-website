@@ -32,7 +32,7 @@
                 <h3>participants</h3>
                 <hr>
                     {% for p in participants %}
-                        <h5><a href="">@{{ p }}</a></h5>
+                        <h5><a href="{% url 'user:profile' p.id %}">@{{ p }}</a></h5>
                     {% endfor %}
             </div>
     </div>

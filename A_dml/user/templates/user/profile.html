@@ -1,7 +1,7 @@
 {% extends "chat.html" %}
 
 {% block title %}
-    {{ request.user }} profile
+    {{ user }} profile
 
 {% endblock title %}
 
@@ -9,15 +9,14 @@
     <br>
     <h1>{{ user }}</h1>
 
-    <div class='profile-container'>
+    <div class='temp'>
         <div>
             {% include "topics.html" %}
         </div>
-
         <div>
+            <h2>{{ user }} rooms </h2>
             {% include "feeds.html" %}
         </div>
-
         <div>
             {% include "recent.html" %}
         </div>

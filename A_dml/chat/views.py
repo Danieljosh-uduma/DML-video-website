@@ -97,6 +97,8 @@ def create_room(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.host = request.user
             form.save()
             return redirect('chatroom:homepage')
     context = {'form': form}
@@ -130,7 +132,6 @@ def delete_room(request,pk):
 @login_required(login_url='chatroom:login')
 def delete_message(request,pk):
     message = Message.objects.get(id=pk)
-    num = pk
     
     if request.user != message.user:
        return HttpResponse('you are not allow here!!')

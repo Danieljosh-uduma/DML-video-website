@@ -42,3 +42,6 @@ ion-icon {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
 }
+.hdgd{
+    color: rgb(red, green, blue);
+}
