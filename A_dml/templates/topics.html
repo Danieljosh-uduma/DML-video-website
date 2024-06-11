@@ -1,11 +1,31 @@
-<h2>Browse topic</h2>
-            <hr>
-            <a href='{% url "chatroom:homepage" %}' title='All'>
-            <ion-icon name="home" size='large'></ion-icon>
-            </a>
+                
+        <div class="topics">
+          <div class="topics__header">
+            <h2>Browse Topics</h2>
+          </div>
+          <ul class="topics__list">
+            <li>
+              <a href="{% url "chatroom:homepage" %}" class="active">All <span>{{count}} </span></a>
+            </li>
             {% for topic in topics %}
-                <h4 class='sidebar'>
-                {% if topic.name == 'Python' %}
+            <li>
+              <a href="{% url "chatroom:homepage" %}?q={{topic.name}}"> {{topic.name}} <span>{{topic.room_set.all.count}} </span></a>
+            </li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn--link" href="topics.html">
+            More
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>chevron-down</title>
+              <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+            </svg>
+          </a>
+        </div>
+
+
+
+{% comment %} 
+        {% if topic.name == 'Python' %}
                     <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" aria-label='Python' title='Python'>
                     <ion-icon name="logo-python" size='large'></ion-icon>
                     </a>
@@ -26,7 +46,7 @@
                     </a>
                 {% endif %}
                 {% if topic.name == 'SQL' %}
-                    <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='SQL'>
+                    <a href="" title='SQL'>
                     <ion-icon name="albums" size='large'></ion-icon>
                     </a>
                 {% endif %}
@@ -34,5 +54,4 @@
                     <a href="{% url "chatroom:homepage" %}?q={{topic.name}}" title='Django'>
                     <ion-icon name="earth" size='large'></ion-icon>
                     </a>
-                {% endif %}
-            {% endfor %}
+                {% endif %} {% endcomment %}
