@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from .models import FAQs
 
 # Create your views here.
 def homepage(request):
     page = 'home'
-    context = {'page': page}
+    questions = FAQs.objects.all()
+    context = {'page': page, 'questions':questions}
     return render(request, 'home/homepage.html', context)
 
 def about(request):
