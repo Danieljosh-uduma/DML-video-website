@@ -25,6 +25,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
+    <!-- JS Implementing Plugins -->
+    <script  src="../../../assets/vendor/gmaps/gmaps.min.js"></script>
+
+    <!-- JS Unify -->
+    <script  src="../../../assets/js/components/gmap/hs.map.js"></script>
+
+    <!-- JS Plugins Init. -->
+    <script >
+      // initialization of google map
+      function initMap() {
+        $.HSCore.components.HSGMap.init('.js-g-map');
+      }
+    </script>
+
+    <script  src="//maps.googleapis.com/maps/api/js?key=AIzaSyAtt1z99GtrHZt_IcnK-wryNsQ30A112J0&amp;callback=initMap" async="" defer=""></script>
 </head>
 <body>
     <header>
@@ -36,14 +51,18 @@
         {% if page != 'about' %}
             <li><a href="{% url 'home:about'%}">About</a></li>
         {% endif %}
-        {% if page != 'resource' %}
-            <li><a href="{% url 'user:resource' %}">Resource</a></li>
+        {% if page != 'member' %}
+            <li><a href="{% url 'home:member' %}">Contact us</a></li>
+        {% endif %}
+        {% if page != 'gallery' %}
+            <li><a href="{% url 'home:gallery' %}">Gallery</a></li>
         {% endif %}
         {% if page != 'team' %}
             <li><a href="{% url 'home:team'%}">Team</a></li>
         {% endif %}
         </ul>
         <div class="right-content">
+            {% if page != 'home' %}
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'chatroom:logout' %}" class="nav-btn">
                     logout
@@ -53,6 +72,7 @@
                     sign in
                 </a>
                 {% endif %}
+            {% endif %}
             <div class="bx bx-menu" id='menu-icon'></div>
         </div>
     </header>
@@ -60,9 +80,37 @@
         {% block content %}
     
         {% endblock content %}
-        <footer class="footer" id='footer'>
+
+        <!-- Footer -->
+    <!-- <div class="container-fluid text-center g-color-white-opacity-0_8 px-0">
+    <div class="row no-gutters g-min-height-80vh">
+      <!-- Google Map -->
+      <div class="col-md-12 col-lg-4 g-min-height-400">
+        <div id="gMap1" class="js-g-map h-100" data-type="custom" data-lat="40.674" data-lng="-73.946" data-zoom="12" data-title="Travel" data-styles="[
+                 ['', '', [{'saturation':-100},{'lightness':51},{'visibility':'simplified'}]],
+                 ['', 'labels', [{'visibility':'on'}]],
+                 ['water', '', [{'color':'#bac6cb'}]]
+               ]" data-pin="true" data-pin-icon="../../../assets/img/icons/pin/green.png">
+        </div>
+      </div>
+      <!-- End Google Map -->
+  
+      <!-- Footer Content 
+      <div class="col-md-6 col-lg-4 d-flex g-bg-primary g-pa-40">
+        <div class="align-self-center">
+          <header class="u-heading-v8-2 g-mb-40">
+            <h2 class="u-heading-v8__title g-color-white text-uppercase g-font-weight-700 g-mb-0">
+              <strong class="g-font-size-12 g-bg-black-opacity-0_9 g-mb-20">Our Contacts</strong>
+              <br>
+              <span class="g-color-black-opacity-0_9">Get in</span>
+              touch
+            </h2>
+          </header> -->
+
+        
+        <!-- <footer class="footer" id='footer'>
             <p class="copy">Deep machine learning &copy {% now "Y" %}</p>
-        </footer>
+        </footer> -->
         <script src="{% static "js/main.js" %}"></script>
     </main>    
 </body>

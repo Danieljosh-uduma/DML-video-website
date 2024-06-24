@@ -20,3 +20,8 @@ def member(request):
     page = 'member'
     context = {'page': page}
     return render(request, 'home/member.html', context)
+
+def gallery(request):
+    page = 'gallery'
+    context = {'page': page}
+    return render(request, 'home/gallery.html', context)

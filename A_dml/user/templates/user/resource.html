@@ -1,17 +1,25 @@
-{% extends "home.html" %}
+{% extends "chat.html" %}
 
 {% block title %}
     resource
 {% endblock title %}
 {% block content %}
-       <div class="hero">
+       <div class="">
             <div>
                 <small>watch our </small>
-                <h2><a href="">videos</a></h2>
+                <h2><a href="{% url 'video:homepage' %}">videos</a></h2>
             </div>
             <div>
                 <small>join our </small>
                 <h2><a href="{% url 'chatroom:homepage' %}">studyrooms</a></h2>
+                <div>
+                    
+                    {% for room in rooms %}
+                        <h3>{{room.name}} </h3>
+                        <h6>{{room.host}} </h6>
+                    {% endfor %}
+                        
+                </div>
             </div>
         </div> 
     
