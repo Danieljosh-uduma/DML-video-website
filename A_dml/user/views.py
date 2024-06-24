@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from chat.models import Topic, Room, Message
 from django.contrib.auth.decorators import login_required
@@ -23,6 +23,14 @@ def user_profile(request, pk):
 
 @login_required(login_url='chatroom:login')
 def update_user(request):
-    form = FormUser
+    user = request.user
+    form = FormUser(instance=user)
     context = {'form': form}
+    
+    if request.method == 'POST':
+        form = FormUser(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user:profile', pk=user.id)
+        
     return render(request, 'user/update_user.html', context)
