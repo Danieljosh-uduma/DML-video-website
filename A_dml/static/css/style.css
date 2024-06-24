@@ -8,9 +8,9 @@
 }
 
 :root {
-    --bg-color: #f8efef;
-    --text-color: #105ceb;
-    --main-color: rgb(2, 114, 2);
+    --bg-color: #fff;
+    --text-color: #240849;
+    --main-color: rgb(175, 165, 247);
 
     --big-font: 5rem;
     --p-font: 1rem;
