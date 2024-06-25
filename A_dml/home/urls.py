@@ -10,3 +10,4 @@ urlpatterns = [
     path('contact-us/', views.member, name='member'),
     path('our-gallery/', views.gallery, name='gallery'),
 ]
+
