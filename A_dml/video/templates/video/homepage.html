@@ -1,15 +1,76 @@
 {% extends "chat.html" %}
-
+{% load embed_video_tags %}
+{% load static %}
 
 {% block title %}
-    video
+    Our Videos
 {% endblock title %}
-    
-
 
 {% block content %}
-    
-    <h1>Video page</h1>
+<link rel="stylesheet" href="{% static 'css/video.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:600,900" rel="stylesheet">
 
+  
+<body>
+  <p class="heading">Our Videos</p>
+  <div class="gallery-image">
+
+    {% for item in videos %}
+    <div class="img-box">
+      <div class="transparent-box">
+        {% video item.url '360x260' %}
+        <div class="caption">
+          <p>{{item.name}} </p>
+          <p class="opacity-low">{{item.topic}} </p>
+        </div>
+      </div> 
+    </div>
+    {% endfor %}
+
+    <!-- <div class="img-box">
+      <img src="https://picsum.photos/350/250/?image=232" alt="" />
+      <div class="transparent-box">
+        <div class="caption">
+          <p>Night Sky</p>
+          <p class="opacity-low">Cinematic</p>
+        </div>
+      </div>
+    </div>
+    <div class="img-box">
+      <img src="https://picsum.photos/350/250/?image=431" alt="" />
+      <div class="transparent-box">
+        <div class="caption">
+          <p>Tea Talk</p>
+          <p class="opacity-low">Composite</p>
+        </div>
+      </div>
+    </div>
+    <div class="img-box">
+      <img src="https://picsum.photos/350/250?image=474" alt="" />
+      <div class="transparent-box">
+        <div class="caption">
+          <p>Road</p>
+          <p class="opacity-low">Landscape</p>
+        </div>
+      </div> 
+    </div>
+    <div class="img-box">
+      <img src="https://picsum.photos/350/250?image=344" alt="" />
+      <div class="transparent-box">
+        <div class="caption">
+          <p>Sea</p>
+          <p class="opacity-low">Cityscape</p>
+        </div>
+      </div> 
+    </div>
+    <div class="img-box">
+      <img src="https://picsum.photos/350/250?image=494" alt="" />
+      <div class="transparent-box">
+        <div class="caption">
+          <p>Vintage</p>
+          <p class="opacity-low">Cinematic</p>
+        </div>
+      </div> 
+    </div> -->
+  </div>
 {% endblock content %}
-    

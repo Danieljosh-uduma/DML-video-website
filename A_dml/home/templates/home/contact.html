@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -15,12 +16,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-                        
-        <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="{% static 'css1/bootstrap.min.css' %}" rel="stylesheet">
 
-        <link href="css/templatemo-topic-listing.css" rel="stylesheet">
+        <link href="{% static 'css1/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css1/templatemo-topic-listing.css' %}" rel="stylesheet">
+
+        <style>
+            .dml {
+                width: 120px;
+                height: 40px;
+            }
+        </style>
 <!--
 
 TemplateMo 590 topic listing
@@ -37,8 +45,9 @@ https://templatemo.com/tm-590-topic-listing
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
-                        <i class="bi-back"></i>
-                        <span>Topic</span>
+                        <!-- <i class="bi-back"></i> -->
+                        <img src="{% static 'images/logo.png' %}" alt="logo" class="dml">
+                        <span></span>
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
@@ -52,34 +61,34 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_1">Home</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_2">Browse Topics</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Browse Topics</a>
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_3">How it works</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">How it works</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_4">FAQs</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">FAQs</a>
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_5">Contact</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Contact</a>
                             </li>
 
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                     <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
 
                                     <li><a class="dropdown-item active" href="contact.html">Contact Form</a></li>
-                                </ul>
-                            </li>
+                                </ul> 
+                            </li> -->
                         </ul>
 
                         <div class="d-none d-lg-block">
@@ -97,7 +106,7 @@ https://templatemo.com/tm-590-topic-listing
                         <div class="col-lg-5 col-12">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'home:homepage' %}">Homepage</a></li>
 
                                     <li class="breadcrumb-item active" aria-current="page">Contact Form</li>
                                 </ol>
@@ -161,11 +170,11 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
 
                         <div class="col-lg-5 col-12 mx-auto mt-5 mt-lg-0">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d783.2634253495389!2d3.305784443194756!3d6.513918641820106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8ee4d41f3067%3A0x188353f42ca3b2b9!2s15%20Olukayode%20Akinsanya%20St%2C%20Ilasamaja%2C%20Lagos%20102214%2C%20Lagos!5e1!3m2!1sen!2sng!4v1719246805058!5m2!1sen!2sng" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-                            <h5 class="mt-4 mb-2">Topic Listing Center</h5>
+                            <h5 class="mt-4 mb-2">Ago Palace office</h5>
 
-                            <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
+                            <p>15, Akinsanya Street, Ago Palace Way, Okota Lagos</p>
                         </div>
 
                     </div>
@@ -178,9 +187,9 @@ https://templatemo.com/tm-590-topic-listing
                 <div class="row">
 
                     <div class="col-lg-3 col-12 mb-4 pb-2">
-                        <a class="navbar-brand mb-2" href="index.html">
+                        <a class="navbar-brand mb-2" href="{% url 'home:homepage' %}">
                             <i class="bi-back"></i>
-                            <span>Topic</span>
+                            <span>DML Technologies</span>
                         </a>
                     </div>
 
@@ -210,14 +219,14 @@ https://templatemo.com/tm-590-topic-listing
                         <h6 class="site-footer-title mb-3">Information</h6>
 
                         <p class="text-white d-flex mb-1">
-                            <a href="tel: 305-240-9671" class="site-footer-link">
-                                305-240-9671
+                            <a href="tel: +234-806-528-0371" class="site-footer-link">
+                                +234-806-528-0371
                             </a>
                         </p>
 
                         <p class="text-white d-flex">
-                            <a href="mailto:info@company.com" class="site-footer-link">
-                                info@company.com
+                            <a href="mailto:dmltechnologieslagos@gmail.com" class="site-footer-link">
+                                dmltechnologieslagos@gmail.com
                             </a>
                         </p>
                     </div>
@@ -236,9 +245,9 @@ https://templatemo.com/tm-590-topic-listing
                             </ul>
                         </div>
 
-                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                        <p class="copyright-text mt-lg-5 mt-4">Copyright &copy {% now "Y" %} Deep Machine Learning . All rights reserved.
                         <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-                        
+                            
                     </div>
 
                 </div>
@@ -246,10 +255,10 @@ https://templatemo.com/tm-590-topic-listing
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="{% static 'js2/jquery.min.js' %}"></script>
+        <script src="{% static 'js2/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js2/jquery.sticky.js' %}"></script>
+        <script src="{% static 'js2/custom.js' %}"></script>
 
     </body>
 </html>

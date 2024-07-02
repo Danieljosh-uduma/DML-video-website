@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'chat.apps.ChatConfig',
     'video.apps.ChatroomConfig',
     'home.apps.HomeConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'embed_video',
 ]
 
 MIDDLEWARE = [

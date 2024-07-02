@@ -69,8 +69,8 @@ def homepage(request):
         Q(description__icontains=q)
     )
     room_count = rooms.count()
-    topics = Topic.objects.all()
-    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))#.order_by('created')
+    topics = Topic.objects.all()[0:5]
+    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:5]#.order_by('created')
     
     new_msg = []
     count = 0
@@ -151,3 +151,19 @@ def delete_message(request,pk):
         return redirect('chatroom:homepage')
     context = {'obj':message}
     return render(request, 'chatroom/delete_room.html', context)
+
+def topics(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    topics = Topic.objects.filter(
+        Q(name__icontains=q))
+    
+    topics_count = topics.count()
+    
+    context = {'topics':topics, 'count':topics_count}
+    return render(request, 'chatroom/topics.html', context)
+
+def activities(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:5]
+    context = {'R_messages':R_messages}
+    return render(request, 'chatroom/activity.html', context)

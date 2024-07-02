@@ -17,3 +17,7 @@ def homepage(request):
 
 def not_found(request):
     return render(request, 'home/not_found.html')
+
+def contact(request):
+    context = {}
+    return render(request, 'home/contact.html', context)
