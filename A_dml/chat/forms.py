@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Room
+from .models import Room, Suggest
 
 class RoomForm(ModelForm):
     
@@ -7,3 +7,10 @@ class RoomForm(ModelForm):
         model = Room
         fields = '__all__'
         exclude = ['host', 'participants']
+        
+class SuggestForm(ModelForm):
+    
+    class Meta:
+        model = Suggest
+        fields = '__all__'
+        exclude = ['host']

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Room, Message
-from .forms import RoomForm
+from .forms import RoomForm, SuggestForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -15,7 +15,7 @@ def login_page(request):
     page = 'login'
     
     if request.user.is_authenticated:
-        return redirect('user:resource')
+        return redirect('video:homepage')
     
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -30,7 +30,7 @@ def login_page(request):
          
         if user is not None:
             login(request, user)
-            return redirect('user:resource')
+            return redirect('home:homepage')
         else:
             messages.error(request, 'incorrect username or password')
         
@@ -43,7 +43,7 @@ def logout_page(request):
 
 def register_page(request):
     if request.user.is_authenticated:
-        return redirect('chatroom:homepage')
+        return redirect('home:homepage')
     
     form = UserCreationForm
     
@@ -55,13 +55,14 @@ def register_page(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('user:resource')
+            return redirect('home:homepage')
         
     context = {'form': form}
     return render(request, 'chatroom/register.html', context)
     
 @login_required(login_url='chatroom:login')
 def homepage(request):
+    page = 'chat'
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q)|
@@ -70,7 +71,7 @@ def homepage(request):
     )
     room_count = rooms.count()
     topics = Topic.objects.all()[0:5]
-    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:5]#.order_by('created')
+    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:10]#.order_by('created')
     
     new_msg = []
     count = 0
@@ -80,13 +81,13 @@ def homepage(request):
         if count == 10:
             break
         
-    context = {'topics':topics, 'rooms':rooms, 'count':room_count, 'R_messages':R_messages, 'new_msg':new_msg}
+    context = {'topics':topics, 'rooms':rooms, 'count':room_count, 'R_messages':R_messages, 'new_msg':new_msg, 'page':page}
     return render(request, 'chatroom/homepage.html', context)
 
 @login_required(login_url='chatroom:login')
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    R_messages = room.message_set.all().order_by('-created')
+    R_messages = room.message_set.all().order_by('created')
     participants = room.participants.all()
     
     if request.method == 'POST':
@@ -97,15 +98,30 @@ def room(request, pk):
         )
         room.participants.add(request.user)
         return redirect('chatroom:room', pk=room.id)
-    context = {'room': room, 'R_messages':R_messages, 'participants':participants}
+    num = participants.count()
+    context = {'room': room, 'R_messages':R_messages, 'participants':participants, 'num':num}
     return render(request, 'chatroom/room.html', context)
 
 @login_required(login_url='chatroom:login')
 def create_room(request):
-    page = 'create'
+    page, pag = 'create', 'create'
     form = RoomForm
     if request.method == 'POST':
         form = RoomForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.host = request.user
+            form.save()
+            return redirect('chatroom:homepage')
+    context = {'form': form, 'page':page,'pag':pag}
+    return render(request, 'chatroom/create_room.html', context)
+
+@login_required(login_url='chatroom:login')
+def suggest_room(request):
+    page = 'suggest'
+    form = SuggestForm
+    if request.method == 'POST':
+        form = SuggestForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
             form.host = request.user
@@ -116,6 +132,7 @@ def create_room(request):
 
 @login_required(login_url='chatroom:login')
 def update_room(request, pk):
+    page = 'create'
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
     
@@ -127,7 +144,7 @@ def update_room(request, pk):
         if form.is_valid():
             form.save()
             return redirect('chatroom:homepage')
-    context = {'form': form}
+    context = {'form': form, 'page':page}
     return render(request, 'chatroom/create_room.html', context)
 
 @login_required(login_url='chatroom:login')
@@ -152,6 +169,7 @@ def delete_message(request,pk):
     context = {'obj':message}
     return render(request, 'chatroom/delete_room.html', context)
 
+@login_required(login_url='chatroom:login')
 def topics(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     topics = Topic.objects.filter(
@@ -162,6 +180,7 @@ def topics(request):
     context = {'topics':topics, 'count':topics_count}
     return render(request, 'chatroom/topics.html', context)
 
+@login_required(login_url='chatroom:login')
 def activities(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:5]

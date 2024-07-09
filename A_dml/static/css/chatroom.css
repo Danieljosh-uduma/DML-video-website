@@ -294,7 +294,7 @@ a {
 }
 
 .header__search > label {
-  background-color: var(--color-dark-medium);
+  background-color: #ffffff;
   padding: 1.3rem 1rem;
   display: flex;
   align-items: center;
@@ -303,7 +303,7 @@ a {
 }
 
 .header__search svg {
-  fill: var(--color-gray);
+  fill: #13547a;
   width: 2rem;
   height: 2rem;
   margin-left: 1rem;
@@ -314,7 +314,7 @@ a {
   background: transparent;
   border: none;
   outline: none;
-  color: var(--color-light);
+  color: #000000;
 }
 
 @media screen and (max-width: 800px) {

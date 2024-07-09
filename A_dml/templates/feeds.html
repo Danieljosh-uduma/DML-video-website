@@ -13,10 +13,10 @@
                 {% endif %}
               </a>
               {% if request.user == room.host %}
-                        <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
+                        <a href="{% url 'chatroom:update-room' room.id %}">Edit </a>| 
               {% endif %}
-              {% if request.user == room.host or request.user.is_superuser %}
-                        <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
+              {% if request.user.is_superuser %}
+                        <a href="{% url 'chatroom:delete-room' room.id %}">Delete </a>
                 {% endif %}
               <div class="roomListRoom__actions">
                 <span>{{room.created|timesince}} ago</span>

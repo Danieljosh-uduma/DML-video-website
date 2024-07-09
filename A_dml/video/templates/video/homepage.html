@@ -13,13 +13,14 @@
   
 <body>
   <p class="heading">Our Videos</p>
+  <p><a href="{% url 'video:homepage' %}">All</a></p>
   <div class="gallery-image">
-
     {% for item in videos %}
     <div class="img-box">
       <div class="transparent-box">
         {% video item.url '360x260' %}
         <div class="caption">
+          
           <p>{{item.name}} </p>
           <p class="opacity-low">{{item.topic}} </p>
         </div>
