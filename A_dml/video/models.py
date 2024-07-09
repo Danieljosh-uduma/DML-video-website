@@ -1,5 +1,5 @@
 from django.db import models
-from home.models import Tutors
+from home.models import Tutor
 from chat.models import Topic
 from embed_video.fields import EmbedVideoField
 
@@ -7,7 +7,7 @@ from embed_video.fields import EmbedVideoField
 class Video(models.Model):
     name = models.CharField(max_length=50)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
-    tutor = models.ForeignKey(Tutors, on_delete=models.SET_NULL, null=True)
+    tutor = models.ForeignKey(Tutor, on_delete=models.SET_NULL, null=True)
     url = EmbedVideoField()
     posted = models.DateTimeField(auto_now=True)
     

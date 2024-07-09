@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from .models import User
 from chat.models import Topic, Room, Message
 from django.contrib.auth.decorators import login_required
 from .forms import FormUser
@@ -28,7 +28,7 @@ def update_user(request):
     context = {'form': form}
     
     if request.method == 'POST':
-        form = FormUser(request.POST, instance=user)
+        form = FormUser(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect('user:profile', pk=user.id)

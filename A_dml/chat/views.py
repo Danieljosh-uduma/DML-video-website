@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Room, Message
-from .forms import RoomForm, SuggestForm
-from django.contrib.auth.models import User
+from .forms import RoomForm, SuggestForm, MyRegisterForm
+from user.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 
 # Create your views here.
@@ -18,21 +17,21 @@ def login_page(request):
         return redirect('video:homepage')
     
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
         
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except:
             messages.error(request, 'User does not exist!!')
             
-        user = authenticate(request, username=username, password=password) 
+        user = authenticate(request, email=email, password=password) 
          
         if user is not None:
             login(request, user)
             return redirect('home:homepage')
         else:
-            messages.error(request, 'incorrect username or password')
+            messages.error(request, 'incorrect email or password')
         
     context= {'page':page}
     return render(request, 'chatroom/register.html', context)
@@ -45,10 +44,10 @@ def register_page(request):
     if request.user.is_authenticated:
         return redirect('home:homepage')
     
-    form = UserCreationForm
+    form = MyRegisterForm
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyRegisterForm(request.POST)
         
         if form.is_valid():
             user = form.save(commit=False)
@@ -87,7 +86,7 @@ def homepage(request):
 @login_required(login_url='chatroom:login')
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    R_messages = room.message_set.all().order_by('created')
+    R_messages = room.message_set.all().order_by('-created')
     participants = room.participants.all()
     
     if request.method == 'POST':
