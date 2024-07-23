@@ -70,7 +70,7 @@ def homepage(request):
     )
     room_count = rooms.count()
     topics = Topic.objects.all()[0:5]
-    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))[0:10]#.order_by('created')
+    R_messages = Message.objects.filter(Q(room__topic__name__icontains=q))#.order_by('created')
     
     new_msg = []
     count = 0

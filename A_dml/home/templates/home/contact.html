@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Topic Listing Contact Page</title>
+        <title>Contact Us</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,15 @@ https://templatemo.com/tm-590-topic-listing
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'user:profile' request.user.id %}">
+                                <img src="{{request.user.avatar.url}}" alt="" width="50" height="50" style="border-radius: 20px;">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'chatroom:login' %}">
+                                <img src="{% static 'images/avatar.svg' %}" alt="" width="40" height="40" style="border-radius: 20px;">
+                            </a>
+                            {% endif %}
                     </div>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,36 +71,52 @@ https://templatemo.com/tm-590-topic-listing
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Home</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Browse Topics</a>
-                            </li>
     
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">How it works</a>
-                            </li>
+                            </li>  -->
 
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">FAQs</a>
-                            </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{% url 'home:homepage' %}">Contact</a>
+                                <a class="nav-link click-scroll" href="{% url 'home:service' %}">Our Services</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Join In</a>
+
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'video:homepage' %}">Videos</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'chatroom:homepage' %}">Chat Rooms</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'chatroom:login' %}">Login</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'chatroom:register' %}">Sign-up</a></li>
+                                    {% endif %}
+                                </ul>
                             </li>
 
                             <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
-
-                                    <li><a class="dropdown-item active" href="contact.html">Contact Form</a></li>
-                                </ul> 
+                                    <li><a class="dropdown-item" href="{% url 'home:not' %}">Our Services</a></li>
+                                </ul>
                             </li> -->
+
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                            
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'user:profile' request.user.id %}">
+                                <img src="{{request.user.avatar.url}}" alt="" width="50" height="50" style="border-radius: 20px;">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'chatroom:login' %}">
+                                <img src="{% static 'images/avatar.svg' %}" alt="" width="40" height="40" style="border-radius: 20px;">
+                            </a>
+                            {% endif %}
+                            
                         </div>
                     </div>
                 </div>
@@ -129,43 +153,25 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <form action="#" method="post" class="custom-form contact-form" role="form">
+                            <form action="" method="POST" class="custom-form contact-form" role="form">
+                                {% csrf_token %}
+                                {% for field in form%}
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="col-lg-12 col-md-6 col-12">
+                                        <label for="floatingInput">{{field.label}}</label>
                                         <div class="form-floating">
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Name</label>
+                                            {{field}}
                                         </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-12"> 
-                                        <div class="form-floating">
-                                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
-                                            
-                                            <label for="floatingInput">Email address</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 col-12">
-                                        <div class="form-floating">
-                                            <input type="text" name="subject" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Subject</label>
-                                        </div>
-
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
-                                            
-                                            <label for="floatingTextarea">Tell me about the project</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-12 ms-auto">
-                                        <button type="submit" class="form-control">Submit</button>
                                     </div>
 
                                 </div>
+                                {% endfor %}
+                                
+                                <div class="col-lg-4 col-12 ms-auto">
+                                    <button type="submit" class="form-control">Submit</button>
+                                </div>
+                                
+                            
                             </form>
                         </div>
 
@@ -188,8 +194,9 @@ https://templatemo.com/tm-590-topic-listing
 
                     <div class="col-lg-3 col-12 mb-4 pb-2">
                         <a class="navbar-brand mb-2" href="{% url 'home:homepage' %}">
-                            <i class="bi-back"></i>
-                            <span>DML Technologies</span>
+                            <!-- <i class="bi-back"></i> -->
+                            <img src="{% static 'images/logo.png' %}" alt="logo" class="dml">
+                            <span>Tech</span>
                         </a>
                     </div>
 
@@ -246,7 +253,8 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
 
                         <p class="copyright-text mt-lg-5 mt-4">Copyright &copy {% now "Y" %} Deep Machine Learning . All rights reserved.
-git                         <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+                        </p>
+<!-- <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a> -->
                             
                     </div>
 

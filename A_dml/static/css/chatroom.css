@@ -463,6 +463,7 @@ a {
   margin: 3rem;
 }
 
+/* to be fixed */
 @media screen and (max-width: 900px) {
   .activities,
   .topics {
@@ -733,7 +734,8 @@ a {
 .activities {
   background: var(--color-dark);
   border-radius: 5px;
-  overflow: hidden;
+  overflow-y: scroll;
+  height: 600px;
 }
 
 .activities__header h2 {

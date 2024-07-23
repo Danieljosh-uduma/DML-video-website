@@ -41,3 +41,13 @@ class UpcomingCourse(models.Model):
     
     def __str__(self):
         return str(self.topic)
+    
+class Contact(models.Model):
+    name = models.CharField(max_length=70)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    description = models.TextField()
+    created = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return str(self.name)

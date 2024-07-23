@@ -50,11 +50,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                                <a class="nav-link click-scroll" href="#section_4">Faqs</a>
                             </li>
-    
-                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Contact Us</a>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">contact us</a>
                             </li>
 
                             <!-- <li class="nav-item">
@@ -73,6 +73,13 @@
                                     <li><a class="dropdown-item" href="{% url 'chatroom:register' %}">Sign-up</a></li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="{% url 'home:contact' %}">Contact Form</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'home:service' %}">Our Services</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -166,15 +173,15 @@
 
                                         <ul class="social-icon">
                                             <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-youtube"></a>
+                                                <a href="https://youtube.com/@deepmachine_learning?si=rNpkZJc_zMvc0jn5" class="social-icon-link bi-youtube"></a>
                                             </li>
 
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-tiktok"></a>
-                                            </li>
+                                            <!-- <li class="social-icon-item">
+                                                <a href="" class="social-icon-link bi-tiktok"></a>
+                                            </li> -->
 
                                             <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-whatsapp"></a>
+                                                <a href="https://wa.me/2348065280371" class="social-icon-link bi-whatsapp"></a>
                                             </li>
                                         </ul>
 
@@ -301,7 +308,7 @@
                                                             <div>
                                                                 <h5 class="mb-2">Video Tutorials</h5>
 
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                                <p class="mb-0">Want to learn to code? Our video breaks down complex coding concepts into easy-to-follow steps.</p>
                                                             </div>
 
                                                             <span class="badge bg-advertising rounded-pill ms-auto">30</span>
@@ -319,7 +326,7 @@
                                                             <div>
                                                                 <h5 class="mb-2">Chat Rooms</h5>
 
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                                <p class="mb-0">Join our coding community! Connect with fellow coders, learn from experts, and get inspired.</p>
                                                             </div>
 
                                                             <span class="badge bg-advertising rounded-pill ms-auto">{{room}} </span>
@@ -337,13 +344,13 @@
                                                             <div>
                                                                 <h5 class="mb-2">Social media</h5>
 
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                                <p class="mb-0">Join our WhatsApp group and meet others like you.</p>
                                                             </div>
 
                                                             <span class="badge bg-advertising rounded-pill ms-auto">50</span>
                                                         </div>
 
-                                                        <img src="{% static 'images/topics/undraw_viral_tweet_gndb.png' %}" class="custom-block-image img-fluid" alt="">
+                                                        <img src="{% static 'images/wat.jpeg' %}" class="custom-block-image img-fluid" alt="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -535,9 +542,9 @@
                                     </div>
 
                                     <li>
-                                        <h4 class="text-white mb-3">Search your favourite topic</h4>
+                                        <h4 class="text-white mb-3">Search</h4>
 
-                                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, cumque magnam? Sequi, cupiditate quibusdam alias illum sed esse ad dignissimos libero sunt, quisquam numquam aliquam? Voluptas, accusamus omnis?</p>
+                                        <p class="text-white">Unsure what you need? Explore our range of services and find the perfect solution for your project. From <a href="{% url 'home:service' %}"><span>list of services</span></a>, we've got you covered. Check us out and see how we can help!</p>
 
                                         <div class="icon-holder">
                                           <i class="bi-search"></i>
@@ -545,9 +552,9 @@
                                     </li>
                                     
                                     <li>
-                                        <h4 class="text-white mb-3">Bookmark &amp; Keep it for yourself</h4>
+                                        <h4 class="text-white mb-3">Contact Us</h4>
 
-                                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore. Doloremque, repudiandae?</p>
+                                        <p class="text-white">Found the perfect service? Let's discuss your project! <a href="{% url 'home:contact' %}"><span>Contact us</span></a> for a free consultation and quote. We can't wait to bring your vision to life. <br>We will get back to you in no time.</p>
 
                                         <div class="icon-holder">
                                           <i class="bi-bookmark"></i>
@@ -555,9 +562,9 @@
                                     </li>
 
                                     <li>
-                                        <h4 class="text-white mb-3">Read &amp; Enjoy</h4>
+                                        <h4 class="text-white mb-3">Join The Community</h4>
 
-                                        <p class="text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi vero quisquam, rem assumenda similique voluptas distinctio, iste est hic eveniet debitis ut ducimus beatae id? Quam culpa deleniti officiis autem?</p>
+                                        <p class="text-white">Join our thriving <a href="{% url 'home:homepage' %}#section_2"><span>community</span></a> of learners and mentors! Share knowledge, ask questions, and grow together. Learn from experts, inspire others, and build lifelong connections. Let's shape the future together.</p>
 
                                         <div class="icon-holder">
                                           <i class="bi-book"></i>
@@ -570,7 +577,7 @@
                         <div class="col-12 text-center mt-5">
                             <p class="text-white">
                                 Want to learn more?
-                                <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
+                                <a href="https://youtube.com/@deepmachine_learning?si=rNpkZJc_zMvc0jn5" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
                             </p>
                         </div>
                     </div>
@@ -695,6 +702,7 @@
 
                     </div>
                 </div>
+                <a href="{% url 'home:contact' %}" class="btn custom-btn custom-border-btn ms-3">Contact us directly</a>
             </section>
         
 

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import FAQ, FreeCourse, PaidCourse, UpcomingCourse, Tutor
 from chat.models import Room
+from .forms import ContactForm
 
 free = FreeCourse.objects.all().count()
 paid = PaidCourse.objects.all().count()
@@ -19,5 +20,16 @@ def not_found(request):
     return render(request, 'home/not_found.html')
 
 def contact(request):
-    context = {}
+    form = ContactForm
+    
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:homepage')
+        
+    context = {'form':form}
     return render(request, 'home/contact.html', context)
+
+def services(request):
+    return render(request, 'home/services.html')
