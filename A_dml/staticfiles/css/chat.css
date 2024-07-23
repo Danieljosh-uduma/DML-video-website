@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+}
+:root {
+    --bg-color: #ffffff;
+    --text-color: #105ceb;
+    --main-color: #055a0c;
+
+    --big-font: 5rem;
+    --p-font: 1rem;
+}
+body {
+    background: var(--bg-color);
+    color: var(--text-color)
+}
+.dml {
+    width: 120px;
+    height: 40px;
+}
+.temp {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+ion-icon {
+    font-size: 1000px;
+  }
+
+.room-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.hdgd{
+    color: rgb(red, green, blue);
+}
