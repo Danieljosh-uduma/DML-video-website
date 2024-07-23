@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="layout__body">
-                <form class="form" action="POST">
+                <form class="form" method="POST">
                     {% csrf_token %}
                     <div class="form__group">
                         <p>Are you sure you want to delete "<span>{{ obj }}</span>"?</p>

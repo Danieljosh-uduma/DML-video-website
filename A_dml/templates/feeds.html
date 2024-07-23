@@ -4,7 +4,7 @@
         <div class="roomListRoom__header">
               <a href="{% url 'user:profile' room.host.id %}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                  <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+                  <img src="{{room.host.avatar.url}}" />
                 </div>
                 {% if room.host != None %}
                     <span>@{{ room.host }}</span>
@@ -13,10 +13,10 @@
                 {% endif %}
               </a>
               {% if request.user == room.host %}
-                        <a href="{% url 'chatroom:update-room' room.id %}">Edit Room </a>|
+                        <a href="{% url 'chatroom:update-room' room.id %}">Edit </a>| 
               {% endif %}
-              {% if request.user == room.host or request.user.is_superuser %}
-                        <a href="{% url 'chatroom:delete-room' room.id %}">Delete Room </a>
+              {% if request.user.is_superuser %}
+                        <a href="{% url 'chatroom:delete-room' room.id %}">Delete </a>
                 {% endif %}
               <div class="roomListRoom__actions">
                 <span>{{room.created|timesince}} ago</span>
@@ -29,7 +29,7 @@
               </p>
             </div>
             <div class="roomListRoom__meta">
-              <a href="room.html" class="roomListRoom__joined">
+              <a href="{% url 'chatroom:room' room.id %}" class="roomListRoom__joined">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                   <title>user-group</title>
                   <path

@@ -35,6 +35,8 @@ update Forum
         </div>
 
         <div class="layout__body">
+          
+          {% if page == 'create' %}
           <form class="form" action="" method="POST">
             {% csrf_token %}
             
@@ -47,7 +49,7 @@ update Forum
 
             <div class="form__action">
               <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
-              {% if page == 'create' %}
+              {% if pag == 'create' %}
               <input class="btn btn--main" type="submit" value="create">
                 {% else %}
                 <input class="btn btn--main" type="submit" value="update">
@@ -55,6 +57,27 @@ update Forum
               </input>
             </div>
           </form>
+          {% elif page == 'suggest' %}
+          <form class="form" action="{% url 'chatroom:suggest-room'%}" method="POST">
+            {% csrf_token %}
+            
+            {% for field in form  %}
+            <div class="form__group">
+              <label for="room_name">{{field.label}} </label>
+              {{field}}  
+            </div>
+            {% endfor %}
+
+            <div class="form__action">
+              <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+              
+              <input class="btn btn--main" type="submit" value="create">
+                 
+              </input>
+            </div>
+          </form>
+          {% endif %}
+            
         </div>
       </div>
     </div>

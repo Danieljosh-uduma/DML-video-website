@@ -1,117 +1,128 @@
-<!DOCTYPE html>
-   {% load static %}
+{% load static  %}
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}
-            django app
-        {% endblock title %}
-    </title>
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- box icons link -->
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <!-- remix icons link -->
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-    rel="stylesheet"/>
+        <title>DML Technologies</title>
 
-    <!-- google fonts link-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-    <!-- JS Implementing Plugins -->
-    <script  src="../../../assets/vendor/gmaps/gmaps.min.js"></script>
-
-    <!-- JS Unify -->
-    <script  src="../../../assets/js/components/gmap/hs.map.js"></script>
-
-    <!-- JS Plugins Init. -->
-    <script >
-      // initialization of google map
-      function initMap() {
-        $.HSCore.components.HSGMap.init('.js-g-map');
-      }
-    </script>
-
-    <script  src="//maps.googleapis.com/maps/api/js?key=AIzaSyAtt1z99GtrHZt_IcnK-wryNsQ30A112J0&amp;callback=initMap" async="" defer=""></script>
-</head>
-<body>
-    <header>
-        <a href="{% url "home:homepage" %}" class='logo'><img src="{% static 'images/logo.png' %}" alt="logo" class="dml"></a>
-        <ul class="navlist">
-        {% if page != 'home' %}
-            <li><a href="{% url 'home:homepage'%}">Home</a></li>
-        {% endif %}
-        {% if page != 'about' %}
-            <li><a href="{% url 'home:about'%}">About</a></li>
-        {% endif %}
-        {% if page != 'member' %}
-            <li><a href="{% url 'home:member' %}">Contact us</a></li>
-        {% endif %}
-        {% if page != 'gallery' %}
-            <li><a href="{% url 'home:gallery' %}">Gallery</a></li>
-        {% endif %}
-        {% if page != 'team' %}
-            <li><a href="{% url 'home:team'%}">Team</a></li>
-        {% endif %}
-        </ul>
-        <div class="right-content">
-            {% if page != 'home' %}
-                {% if request.user.is_authenticated %}
-                <a href="{% url 'chatroom:logout' %}" class="nav-btn">
-                    logout
-                </a>
-                {% else %}
-                <a href="{% url 'chatroom:register' %}" class="nav-btn">
-                    sign in
-                </a>
-                {% endif %}
-            {% endif %}
-            <div class="bx bx-menu" id='menu-icon'></div>
-        </div>
-    </header>
-    <main class="main">
-        {% block content %}
-    
-        {% endblock content %}
-
-        <!-- Footer -->
-    <!-- <div class="container-fluid text-center g-color-white-opacity-0_8 px-0">
-    <div class="row no-gutters g-min-height-80vh">
-      <!-- Google Map -->
-      <div class="col-md-12 col-lg-4 g-min-height-400">
-        <div id="gMap1" class="js-g-map h-100" data-type="custom" data-lat="40.674" data-lng="-73.946" data-zoom="12" data-title="Travel" data-styles="[
-                 ['', '', [{'saturation':-100},{'lightness':51},{'visibility':'simplified'}]],
-                 ['', 'labels', [{'visibility':'on'}]],
-                 ['water', '', [{'color':'#bac6cb'}]]
-               ]" data-pin="true" data-pin-icon="../../../assets/img/icons/pin/green.png">
-        </div>
-      </div>
-      <!-- End Google Map -->
-  
-      <!-- Footer Content 
-      <div class="col-md-6 col-lg-4 d-flex g-bg-primary g-pa-40">
-        <div class="align-self-center">
-          <header class="u-heading-v8-2 g-mb-40">
-            <h2 class="u-heading-v8__title g-color-white text-uppercase g-font-weight-700 g-mb-0">
-              <strong class="g-font-size-12 g-bg-black-opacity-0_9 g-mb-20">Our Contacts</strong>
-              <br>
-              <span class="g-color-black-opacity-0_9">Get in</span>
-              touch
-            </h2>
-          </header> -->
-
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
         
-        <!-- <footer class="footer" id='footer'>
-            <p class="copy">Deep machine learning &copy {% now "Y" %}</p>
-        </footer> -->
-        <script src="{% static 'js/main.js' %}"></script>
-    </main>    
-</body>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                        
+        <link href="{% static 'css1/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css1/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css1/templatemo-topic-listing.css' %}" rel="stylesheet">
+              
+<!--
+
+TemplateMo 590 topic listing
+
+https://templatemo.com/tm-590-topic-listing
+
+-->
+    </head>
+    
+    <body id="top">
+
+        <main>
+
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
+        </main>
+
+
+        <footer class="site-footer section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mb-4 pb-2">
+                        <a class="navbar-brand mb-2" href="{% url 'home:homepage' %}">
+                            <!-- <i class="bi-back"></i> -->
+                            <img src="{% static 'images/logo.png' %}" alt="logo" class="dml">
+                            <span>Tech</span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <h6 class="site-footer-title mb-3">Resources</h6>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="" class="site-footer-link">How it works</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="" class="site-footer-link">FAQs</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="" class="site-footer-link">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                        <h6 class="site-footer-title mb-3">Information</h6>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +234-806-528-0371" class="site-footer-link">
+                                +234-806-528-0371
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:dmltechnologieslagos@gmail.com" class="site-footer-link">
+                                dmltechnologieslagos@gmail.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            English</button>
+
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item" type="button">English (UK)</button></li>
+
+                            </ul>
+                        </div>
+
+                        <p class="copyright-text mt-lg-5 mt-4">Copyright &copy {% now "Y" %} Deep Machine Learning . All rights reserved.
+                        </p>
+                        <!-- <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a> -->
+                        
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js2/jquery.min.js' %}"></script>
+        <script src="{% static 'js2/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js2/jquery.sticky.js' %}"></script>
+        <script src="{% static 'js2/click-scroll.js' %}"></script>
+        <script src="{% static 'js2/custom.js' %}"></script>
+
+    </body>
 </html>

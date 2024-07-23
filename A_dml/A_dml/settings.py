@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'chat.apps.ChatConfig',
     'video.apps.ChatroomConfig',
     'home.apps.HomeConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'embed_video',
 ]
+
+AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -123,10 +126,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = 'images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

@@ -1,2 +1,3 @@
 # DML-video-website
-website to learn programming and chta with fellow learners
+
+website to learn programming and chat with fellow learners

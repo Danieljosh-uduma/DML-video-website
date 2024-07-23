@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+from user.models import User
 
 # Create your models here.
 class Topic(models.Model):
@@ -21,6 +20,19 @@ class Room(models.Model):
     
     class Meta:
         ordering = ['-updated', '-created']
+        
+    def __str__(self):
+        return self.name
+    
+class Suggest(models.Model):
+    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=300, null=True, blank=True)
+    created = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-created']
         
     def __str__(self):
         return self.name
