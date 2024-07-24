@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User
-from chat.models import Topic, Room, Message
+from chat.models import Topic, Room, Suggest
 from django.contrib.auth.decorators import login_required
 from .forms import FormUser
 
@@ -16,9 +16,10 @@ def resource(request):
 def user_profile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
+    suggests = user.suggest_set.all()
     R_messages = user.message_set.all()
-    topics = Topic.objects.all()
-    context = {'user':user, 'rooms':rooms, 'R_messages': R_messages, 'topics':topics}
+    topics = Topic.objects.all()[:5]
+    context = {'user':user, 'rooms':rooms, 'R_messages': R_messages, 'topics':topics, 'suggests':suggests}
     return render(request, 'user/profile.html', context)
 
 @login_required(login_url='chatroom:login')

@@ -1,7 +1,7 @@
 {% extends "chat.html" %}
 
 {% block title %}
-    {{ user }} profile
+    DMLtech: {{ user }} profile
 
 {% endblock title %}
 
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="profile__info">
-            <h3>{{user.username}} </h3>
+            <h4>{{user.username}} </h4>
             <p>{{user.email}}</p>
             {% if request.user == user %}
             	<a href="{% url 'user:update' %}" class="btn btn--main btn--pill">Edit Profile</a> 
@@ -41,8 +41,13 @@
 
         <div class="roomList__header">
           <div>
-            <h2>Study Rooms Hosted by 
+            <h2>
               
+              {% if user.is_superuser %}
+              Study Rooms Hosted by 
+              {% else %}
+              Rooms Suggested by
+              {% endif %}
               {% if user == request.user %}
                 YOU
               {% else %}
@@ -52,7 +57,7 @@
             </h2>
           </div>
         </div>
-          {% include "feeds.html" %}
+          {% include "feed.html" %}
       </div>
       <!-- Room List End -->
 
