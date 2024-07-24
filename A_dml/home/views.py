@@ -3,15 +3,15 @@ from .models import FAQ, FreeCourse, PaidCourse, UpcomingCourse, Tutor
 from chat.models import Room
 from .forms import ContactForm
 
-free = FreeCourse.objects.all().count()
-paid = PaidCourse.objects.all().count()
-upcoming = UpcomingCourse.objects.all().count()
-room = Room.objects.all().count()
-tutor = Tutor.objects.all().count()
 
 # Create your views here.
 def homepage(request):
     page = 'home'
+    free = FreeCourse.objects.all().count()
+    paid = PaidCourse.objects.all().count()
+    upcoming = UpcomingCourse.objects.all().count()
+    room = Room.objects.all().count()
+    tutor = Tutor.objects.all().count()
     questions = FAQ.objects.all()
     context = {'page': page, 'questions':questions, 'free': free, 'paid': paid, 'coming': upcoming, 'room': room, 'tutor': tutor}
     return render(request, 'home/homepage.html', context)
